@@ -1,10 +1,14 @@
 # moderncpp_exercise_0
 
 ## 1. 본 repository fork 하기
+### 1-1
 ![img.png](img.png)
+### 1-2
 ![img_1.png](img_1.png)
 ## 2. Fork 한 repository 를 clone 하기
+### 2-1
 ![img_2.png](img_2.png)
+### 2-2
 ![img_4.png](img_4.png)
 ## 3. `branch-01` 로 checkout 하기
 ![img_5.png](img_5.png)
