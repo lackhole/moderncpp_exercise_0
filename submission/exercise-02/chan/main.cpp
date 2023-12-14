@@ -18,14 +18,14 @@ int main()
 	auto hi = upper_bound(v.begin(), v.end(), a);
 
 	if (find(v.begin(), v.end(), a) != v.end()){
-		cout << hi - v.begin() << "\n";
-		if(find(v.begin(), v.end(), a) == v.end()) {
-			cout << -1 << "\n";
-		}
-		
+		cout << find(v.begin(), v.end(), a) - v.begin() << "\n";	
 	}
 	else if (find(v.begin(), v.end(), a) == v.end()) {
-		cout << find(v.begin(), v.end(), a) - v.begin() << "\n";
+
+		cout << hi - v.begin() << "\n";
+		if (find(v.begin(), v.end(), a) != v.end()) {
+			cout << -1 << "\n";
+		}
 		
 	}
 		
