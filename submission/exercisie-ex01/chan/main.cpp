@@ -20,7 +20,6 @@ int main()
 
 	lst.remove_if([&](int x) { return x >= a && x < b; });
 
-	// 4. 결과 출력
 	for (int num : lst) {
 		std::cout << num << " ";
 	}
