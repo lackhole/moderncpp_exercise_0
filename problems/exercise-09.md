@@ -31,7 +31,7 @@ class MyVector {
 int main() {
 
   {
-    MyVector<T> v;
+    MyVector<int> v;
     
     v.push_back(1); // v.size() == 1
     v.push_back(2); // v.size() == 2

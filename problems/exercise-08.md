@@ -5,7 +5,7 @@
   * 기본 생성 시 길이 3인 배열을 동적 할당 함
 * 소멸자 `destructor`
   * 소멸 시 동적 할당한 배열을 메모리 헤제 함
-* 배열 제일 끝에 원소 삽입
+* 배열 제일 끝에 원소 삽입 (`push_back`)
   * 삽입 시 메모리 재할당이 필요하면 재할당 해야 합니다.
 * 배열 제일 끝에 원소 삭제
 * 임의 위치 원소 접근
@@ -38,7 +38,7 @@ class MyVector {
 int main() {
 
   {
-    MyVector<T> v;
+    MyVector<int> v;
     
     v.push_back(1); // v.size() == 1
     v.push_back(2); // v.size() == 2
