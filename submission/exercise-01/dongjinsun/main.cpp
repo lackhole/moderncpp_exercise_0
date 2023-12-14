@@ -20,8 +20,8 @@ int main() {
 	}
 	std::sort(temp2, temp2+2);
 	std::list<int>::iterator iter = lst.begin();
-	std::list<int>::iterator iter1 = iter_plus(iter, temp2[0]);
-	std::list<int>::iterator iter2 = iter_plus(iter1, temp2[1]);
+	std::list<int>::iterator iter1 = iter_plus(iter,temp2[0] );
+	std::list<int>::iterator iter2 = iter_plus(iter1, temp2[1]-temp2[0]);
 
 	lst.erase(iter1, iter2);
 
