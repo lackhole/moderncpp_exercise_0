@@ -2,8 +2,8 @@
 컴파일 에러를 발생시키도록 합니다(컴파일이 되지 않도록 합니다)
 
 ```c++
-template<typename T>
-T add(T a, T b) {
+template<typename T, typename U>
+auto add(T a, U b) {
   return a + b;
 }
 ```
