@@ -5,8 +5,6 @@
 using namespace std;
 
 list<int> num_list;
-list<int> tmp_list;
-
 int a, b;
 
 int main()
@@ -26,8 +24,12 @@ int main()
 		b = tmp;
 	}
 
-	for (auto i : num_list) {
-		cout << i << " ";
+	int idx = -1;
+
+	for (list<int>::iterator iter = num_list.begin(); iter != num_list.end(); iter++) {
+		idx++;
+		if (a <= idx && idx < b) continue;
+		printf("%d ", *iter);
 	}
 
 	return 0;
