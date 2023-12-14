@@ -17,7 +17,7 @@ int main()
 	vector<int>::iterator it = find(v.begin(), v.end(), a);
 
 	int chk = INF;
-	int idx = 0;
+	int idx = -1;
 
 	if (it == v.end()) {
 		for (int i = 0; i < 10; i++) {
