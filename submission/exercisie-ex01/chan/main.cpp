@@ -18,7 +18,7 @@ int main()
 
 	//list<int>::iterator iter = lst.begin();
 
-	lst.remove_if([&](int x) { return x >= a && x < b; });
+	lst.remove_if([&](int x) { return x > a && x <= b; });
 
 	for (int num : lst) {
 		cout << num << " ";
