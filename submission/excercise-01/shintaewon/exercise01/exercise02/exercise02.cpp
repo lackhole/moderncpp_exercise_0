@@ -8,6 +8,7 @@ int main()
 {
 	//리스트 선언
 	vector<int> nums_vec;
+	vector<int> nums_vec_cpy;
 
 	int temp_num, a;
 	bool flag = false;
@@ -16,6 +17,7 @@ int main()
 	for (int i = 0; i < 10; i++) {
 		cin >> temp_num;
 		nums_vec.push_back(temp_num);
+		nums_vec_cpy.push_back(temp_num);
 	}
 	cin >> a;
 
@@ -33,7 +35,14 @@ int main()
 		while (cnt < nums_vec.size()) {
 			
 			if (a < nums_vec[cnt]) {//a가 만약 인덱스보다 크다면?
-				cout << nums_vec[cnt];
+				
+				auto it = find(nums_vec_cpy.begin(), nums_vec_cpy.end(), nums_vec[cnt]);
+
+				if (it != nums_vec_cpy.end()) { // vector내에 a 존재함
+					cout << it - nums_vec_cpy.begin(); // index 확인
+					flag = true;
+				}
+
 				flag = true;
 				break;
 			}
