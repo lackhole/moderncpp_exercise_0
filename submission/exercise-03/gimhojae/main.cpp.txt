@@ -1,0 +1,25 @@
+#include <iostream>
+
+using namespace std;
+
+/*
+* constexpr int rem(int x, int y) {return x % y;} 
+* constexpr int comp(int x, int y) { return x % y == 0; }
+* 
+* template<int x, int y>
+* struct S {
+*   static constexpr int value = (comp(x, y)) ? y : S<y, rem(x, y)>::value;
+* }
+*/
+
+template<int x, int y>
+struct S {
+  static constexpr int value = S<y, x % y>::value;
+};
+
+template<int x>
+struct S<x, 0> {
+  static constexpr int value = x;
+};
+
+int main(void) { cout << S<1071, 1029>::value; // 21}
