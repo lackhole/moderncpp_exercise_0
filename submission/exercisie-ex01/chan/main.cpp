@@ -16,12 +16,12 @@ int main()
 	cin >> a >> b;
 
 
-	list<int>::iterator iter = lst.begin();
+	//list<int>::iterator iter = lst.begin();
 
 	lst.remove_if([&](int x) { return x >= a && x < b; });
 
 	for (int num : lst) {
-		std::cout << num << " ";
+		cout << num << " ";
 	}
 
 	return 0;
