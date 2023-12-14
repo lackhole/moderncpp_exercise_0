@@ -1,29 +1,36 @@
-동적 배열 `MyVector`를 구현해 봅시다. (2)
+동적 배열 `MyVector`를 구현해 봅시다. (1)
 
-`MyVector` 다음 기능을 추가로 가져야 합니다.
+`MyVector` 다음 기능을 가져야 합니다.
+* 기본 생성자 `default constructor`
+  * 기본 생성 시 길이 3인 배열을 동적 할당 함
+* 소멸자 `destructor`
+  * 소멸 시 동적 할당한 배열을 메모리 해제 함
+* 배열 제일 끝에 원소 삽입 (`push_back`)
+  * 삽입 시 메모리 재할당이 필요하면 재할당 해야 합니다.
+* 배열 제일 끝에 원소 삭제
+* 임의 위치 원소 접근
+* 현재 배열의 크기 반환
 
-* 복사 생성자 `copy constructor`
-* 복사 대입 연산자 `copy assignment operator`
-* 이동 생성자 `move constructor`
-  * 이동은 O(1) 시간에 완료되어야 하고 불필요한 자원을 사용하지 않습니다
-* 이동 대입 연산자 `move assignment operator`
-  * 이동은 O(1) 시간에 완료되어야 하고 불필요한 자원을 사용하지 않습니다
-
+언급하지 않은 추가적인 기능을 구현 해도 상관 없습니다.
 
 ```c++
-
 template<typename T>
 class MyVector {
  public:
-  // Existing codes...
+  MyVector() { /* ... */ }
+  ~MyVector() { /* ... */ }
   
+  void push_back( /* ... */ ) { /* ... */ }
   
-  MyVector(const MyVector&) { /* ... */ }
-  MyVector(MyVector&&) { /* ... */ }
+  void pop_back(/* ... */) { /* ... */ }
   
-  MyVector& operator=(const MyVector&) { /* ... */ }
-  MyVector& operator=(MyVector&&) { /* ... */ }
+  /* return-type */ operator[](std::size_t i) { /* ... */ }
   
+  std::size_t size() const { /* ... */ }
+  
+ private:
+  T* data_;
+  // Define other member variables if necessary
 };
 
 
@@ -38,16 +45,9 @@ int main() {
     v.push_back(3); // v.size() == 3
     v.push_back(4); // v.size() == 4
     v.push_back(5); // v.size() == 5
-    
-    
-    MyVector<T> v2 = std::move(v);
-    // v2.size() == 5 
-    // v.size() == 0
-    
-  } // v, v2 소멸
+  } // v 소멸
 
 
   return 0;
 }
-
 ```

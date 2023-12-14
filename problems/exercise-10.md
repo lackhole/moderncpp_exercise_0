@@ -1,9 +1,14 @@
-동적 배열 `MyVector`를 구현해 봅시다. (3)
+동적 배열 `MyVector`를 구현해 봅시다. (2)
 
-`MyVector` 다음 기능이 구현되어 있지 않았다면 구현해야 합니다.
-* 배열 제일 끝에 perfect forwarding 으로 원소 삽입 (`emplace_back`)
-  * 삽입 시 메모리 재할당이 필요하면 재할당 해야 합니다.
-* Rvalue 인 `MyVector`의 `operator[]`가 호출 되면 원소를 이동 반환 합니다. 
+`MyVector` 다음 기능을 추가로 가져야 합니다.
+
+* 복사 생성자 `copy constructor`
+* 복사 대입 연산자 `copy assignment operator`
+* 이동 생성자 `move constructor`
+  * 이동은 O(1) 시간에 완료되어야 하고 불필요한 자원을 사용하지 않습니다
+* 이동 대입 연산자 `move assignment operator`
+  * 이동은 O(1) 시간에 완료되어야 하고 불필요한 자원을 사용하지 않습니다
+
 
 ```c++
 
@@ -13,9 +18,12 @@ class MyVector {
   // Existing codes...
   
   
-  void emplace_back(/* ... */) { /* ... */ }
+  MyVector(const MyVector&) { /* ... */ }
+  MyVector(MyVector&&) { /* ... */ }
   
-  /* operator[](std::size_t i) */
+  MyVector& operator=(const MyVector&) { /* ... */ }
+  MyVector& operator=(MyVector&&) { /* ... */ }
+  
 };
 
 
@@ -23,15 +31,18 @@ class MyVector {
 int main() {
 
   {
-    MyVector<std::string> v;
+    MyVector<int> v;
     
-    v.push_back("hello");
-    v.push_back("world");
+    v.push_back(1); // v.size() == 1
+    v.push_back(2); // v.size() == 2
+    v.push_back(3); // v.size() == 3
+    v.push_back(4); // v.size() == 4
+    v.push_back(5); // v.size() == 5
     
-    const char str[] = "hello again";
     
-    v.emplace_back(std::begin(str), std::end(str));
-    v.emplace_back(std::string("hello last time")); // No copy of `std:string` should be performed
+    MyVector<T> v2 = std::move(v);
+    // v2.size() == 5 
+    // v.size() == 0
     
   } // v, v2 소멸
 
