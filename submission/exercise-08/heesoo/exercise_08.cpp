@@ -27,12 +27,12 @@ public:
 	}
 
 	MyApplication& operator = (const MyApplication&) {
-
+		std::cout << MY_FUNCTION << '\n';
 		return *this;
 	}
 
 	MyApplication& operator = (MyApplication&&) noexcept {
-
+		std::cout << MY_FUNCTION << '\n';
 		return *this;
 	}
 
