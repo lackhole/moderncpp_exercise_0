@@ -18,10 +18,12 @@ public:
 	}
 
 	// constructor for initializer_list
-	MyVector(const initializer_list<T> r) {
-		data_ = new T[r.size()];
-		size_ = r.size();
-		capacity_ = size_;
+	MyVector(const initializer_list<T> r):
+		size_(r.size()),
+		capacity_(r.size()*2),
+		data_(nullptr)
+	{
+		data_ = new T[capacity_];
 		copy(r.begin(), r.end(), data_);
 	}
 
@@ -92,23 +94,27 @@ public:
 	}
 
 	T& operator[](size_t i) & {
-		if (i >= 0 && i < size_) return data_[i];
+		if (i < size_) return data_[i];
 		else
-			throw std::out_of_range("Index out of bounds");
+			throw out_of_range("Index out of bounds");
 	}
 
 	const T& operator[](size_t i) const & {
-		if (i >= 0 && i < size_) return data_[i];
+		if (i < size_) return data_[i];
 		else
-			throw std::out_of_range("Index out of bounds");
+			throw out_of_range("Index out of bounds");
 	}
 
 	T&& operator[](size_t i) && {
-		if (i >= 0 && i < size_) return move(data_[i]);
+		if (i < size_) return move(data_[i]);
+		else
+			throw out_of_range("Index out of bounds");
 	}
 
 	const T&& operator[](size_t i) const && {
-		if (i >= 0 && i < size_) return move(data_[i]);
+		if ( i < size_) return move(data_[i]);
+		else
+			throw out_of_range("Index out of bounds");
 	}
 
 	const size_t size() const {
@@ -166,7 +172,7 @@ int main() {
 
 	{  
 		const MyVector<int> v = { 1,2,3,4,5 };
-		for (const auto& x : v) {
+		for (const auto& x : v) { 
 			cout << x << ' ';
 		}
 	} 
