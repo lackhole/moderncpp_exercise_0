@@ -35,7 +35,7 @@ public:
         size_--;
     }
 
-    T operator[](std::size_t i) { 
+    T& operator[](std::size_t i) { 
         return data_[i];
     }
 
@@ -43,7 +43,7 @@ public:
         return size_;
     }
 
-    T top() {
+    T& top() {
         return data_[size_-1];
     }
 
