@@ -38,6 +38,24 @@ public:
 		size += 1;
 	}
 
+	void pop_back() {
+		if (size_ > 0) {
+			size -= 1;
+			// data_[size_].~T();
+		}
+	}
+
+	T& operator[](std::size_t) {
+		return data_[i];
+	}
+
+	const T& operator[](std::size_t) const {
+		return data_[i];
+	}
+
+	std::size_t size() const {
+		return size_;
+	}
 
 private :
 	T* data_;
