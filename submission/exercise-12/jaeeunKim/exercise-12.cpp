@@ -93,10 +93,14 @@ public:
 
 	T& operator[](size_t i) & {
 		if (i >= 0 && i < size_) return data_[i];
+		else
+			throw std::out_of_range("Index out of bounds");
 	}
 
 	const T& operator[](size_t i) const & {
 		if (i >= 0 && i < size_) return data_[i];
+		else
+			throw std::out_of_range("Index out of bounds");
 	}
 
 	T&& operator[](size_t i) && {
@@ -145,6 +149,7 @@ public:
 		if (data_ != nullptr)
 			return data_;
 	}
+
 	T* end() {
 		return data_ + size_;
 	}
