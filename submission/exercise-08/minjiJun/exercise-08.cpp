@@ -5,17 +5,32 @@
 using namespace std;
 
 class MyApplication {
-private:
-    char name;
+
 public:
-    MyApplication() {
-        this-> name = 'a';
-        cout << __PRETTY_FUNCTION__  << '\n';
-    }
-    MyApplication(const MyApplication &myapp) {
-        this->name = myapp.name;
+    // default constructor
+    MyApplication() { 
         cout << __PRETTY_FUNCTION__ << '\n';
     }
+    // copy constructor
+    MyApplication(const MyApplication &myapp) { 
+        cout << __PRETTY_FUNCTION__ << '\n';
+    }
+    // copy assignment operator
+    MyApplication(MyApplication&& myapp) noexcept {
+        cout << __PRETTY_FUNCTION__ << '\n';
+    }
+    // move constructor
+    MyApplication& operator=(const MyApplication& myapp) {
+        cout << __PRETTY_FUNCTION__ << '\n';
+        return *this;
+        
+    }
+    // move assignment operator
+    MyApplication& operator=(MyApplication&& myapp) noexcept{
+        cout << __PRETTY_FUNCTION__ << '\n';
+        return *this;
+    }
+    
     ~MyApplication() {
         cout << __PRETTY_FUNCTION__ << '\n';
     }
