@@ -9,7 +9,7 @@
 using namespace std;
 
 class MyApplication {
-public:
+public :
 	MyApplication() { // 기본 생성자
 		cout << "print : " << MY_FUNCTION << endl;
 	}
