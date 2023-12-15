@@ -21,17 +21,16 @@ public:
 		for (int i = 0; i < size_; ++i) {
 			data_[i] = other[i];
 		}
-		//delete[] other;
-		//other = nullptr;
 	}
 	// move constructor
 	MyVector(MyVector&& other) noexcept
-		: size_(std::move(other.size_)),
-		capacity_(std::move(other.capacity_)) 
+		: size_(other.size_),
+		  capacity_(other.capacity_)
 	{
-		for (int i = 0; i < size_; ++i) {
-			data_[i] = std::move(other[i]);
-		}
+		delete[] data_;
+		other.data_ = nullptr;
+		other.size_ = 0;
+		other.capacity_ = 0;
 	}
 	// copy assignment operator
 	MyVector& operator=(const MyVector& other)
@@ -45,16 +44,16 @@ public:
 		return *this;
 	}
 	// move assignment operator
-	MyVector& operator=(MyVector&& other)
+	MyVector& operator=(MyVector&& other) 
 	{
-		if (this != other)
+		if (this != &other)
 		{
-			size_ = std::move(other.size_);
-			capacity_ = std::move(other.capacity_);
-		}
-		for (int i = 0; i < size_; i++)
-		{
-			data_[i] = std::move(other.data_[i]);
+			delete[] data_;
+			size_ = other.size_;
+			capacity_ = other.capacity_;
+			other.data_ = nullptr;
+			other.capacity_ = 0;
+			other.size_ = 0;
 		}
 		return *this;
 	}
@@ -122,12 +121,10 @@ int main()
 		v.push_back(3);
 		v.push_back(4);
 		v.push_back(5);
-
-		MyVector<int> v2(v);
-		MyVector<int> v3 = v2;
+		
+		MyVector<int> v2 = std::move(v);
 		std::cout << v2.size() << std::endl;
-		std::cout << v3.size() << std::endl;
-		std::cout << v3.operator[](3) << std::endl;
+		std::cout << v.size() << std::endl;
 
 	} // v ¼Ò¸ê
 
