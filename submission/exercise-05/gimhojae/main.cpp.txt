@@ -1,0 +1,29 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int main(void) {
+  vector<int> A, B;
+  int N, M;
+
+  cin >> N;
+  while (N--) {
+    int n;
+    cin>>n;
+    A.push_back(n);
+  }
+
+  cin >> M;
+  while (M--) {
+    int n;
+    cin >> n;
+    B.push_back(n);
+  }
+
+  for (auto i : B) {
+    cout << count(A.begin(), A.end(), i) << ' ';
+  }
+  cout << endl;
+}

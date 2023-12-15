@@ -1,0 +1,19 @@
+#include <iostream>
+#include <vector>
+#include <numeric>
+
+using namespace std;
+
+int main() {
+  int a, b, N;
+  vector<int> A, B;
+
+  cin >> a >> b >> N;
+  
+  for (int i = 0; i < N; i++) {
+    A.push_back(a + i);
+    B.push_back(b + i);
+  }
+
+  cout << inner_product(A.begin(), A.end(), B.begin(), 0) << endl;
+}
