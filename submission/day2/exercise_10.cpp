@@ -92,6 +92,10 @@ public:
     T& operator[](size_t i) { /* ... */
         return data[i];
     }
+    //추가.. const 참조 객체 접근시
+    const T& operator[](size_t i) const {
+        return data[i];
+    }
 
     size_t size() const {
         /* ... */
@@ -139,7 +143,9 @@ int main() {
         for (auto i : v2) {
             cout << i << ' ';
         }
-
+        cout<<'\n';
+        const auto& vref = v2;
+        cout<<vref[0];
     } // v 소멸
 
     
