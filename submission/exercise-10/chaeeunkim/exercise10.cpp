@@ -28,13 +28,13 @@ public:
 		other.size_ = 0;
 	}
 
-	MyVector& operator=(const MyVector& other) { 
+	MyVector& operator=(const MyVector& other) {
 		if (this != &other) {
 			delete[] data_;
 
 			capacity_ = other.capacity_;
 			size_ = other.size_;
-			data_ = new int[capacity_];
+			data_ = new T[capacity_];
 
 			// 다른 배열의 내용을 복사
 			for (size_t i = 0; i < size_; ++i) {
@@ -88,7 +88,7 @@ public:
 		}
 	}
 
-	T operator[](size_t s) {
+	const T& operator[](size_t s) const {
 		return data_[s];
 	}
 
