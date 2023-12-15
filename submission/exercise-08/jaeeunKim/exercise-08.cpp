@@ -12,6 +12,10 @@ class MyApplication {
 public:
 	MyApplication() {	cout << __FUNCSIG__ << '\n'; }
 	MyApplication(const MyApplication& r) { cout << __FUNCSIG__ << '\n'; }
+	MyApplication(MyApplication&& other) noexcept{ cout << __FUNCSIG__ << '\n'; }
+	MyApplication& operator=(const MyApplication &other) { cout << __FUNCSIG__ << '\n'; }
+	MyApplication& operator=(MyApplication&& other) noexcept { cout << __FUNCSIG__ << '\n'; }
+
 	~MyApplication() { cout << __FUNCSIG__ << '\n'; }
 };
 
