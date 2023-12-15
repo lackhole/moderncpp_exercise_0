@@ -15,22 +15,22 @@ public:
 	MyApplication() {
 		//cout << __func__ << "\n";
 		cout << MY_FUNCTION << "\n";
-	};
+	}
 
 	MyApplication(const MyApplication&) {
 		//cout << __func__ << "\n";
 		cout << MY_FUNCTION << "\n";
-	};
+	}
 	MyApplication(MyApplication&&) noexcept {
 		cout << MY_FUNCTION << "\n";
-	};
+	}
 	MyApplication& operator = (const MyApplication&&) noexcept{
 		return *this;
-	};
+	}
 
 	~MyApplication() {
 		cout << MY_FUNCTION << "\n";
-	};
+	}
 
 };
 
