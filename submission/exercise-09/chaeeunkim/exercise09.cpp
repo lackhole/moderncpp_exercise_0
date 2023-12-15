@@ -8,21 +8,29 @@ public:
 		data_ = new T[3];
 	}
 
-	~MyVector() { 
+	~MyVector() {
 		delete[] data_;
 	}
 
 	void push_back(T a) {
-		if (i == size_s) {
-			size_t new_size = size_s * 2;
-			int * new_data_ = new T[new_size];
+		if (i >= size_s) {
+			//메모리 새로 할당
+			size_s = size_s * 2;
+			T* new_data_ = new T[size_s];
+
+			//복사
+			/*
 			for (size_t j = 0; j < size_s; j++) {
 				new_data_[j] = data_[j];
 			}
+			*/
+			copy(data_, data_ + size_s, new_data_);
+
+			//기존 메모리 해제
 			delete[] data_;
 
+			//기존 포인터 대체
 			data_ = new_data_;
-			size_s = new_size;
 		}
 		data_[i++] = a;
 	}
@@ -48,7 +56,7 @@ private:
 };
 
 int main() {
-	
+
 	{
 		MyVector<int> v;
 
@@ -57,9 +65,5 @@ int main() {
 		v.push_back(3);
 		v.push_back(4);
 		v.push_back(5);
-
-		for (int i = 0; i < v.size(); i++) {
-			cout << v[i] << " ";
-		}
 	}
 }
