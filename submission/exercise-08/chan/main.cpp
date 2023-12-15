@@ -24,7 +24,13 @@ public:
 	MyApplication(MyApplication&&) noexcept {
 		cout << MY_FUNCTION << "\n";
 	}
-	MyApplication& operator = (const MyApplication&&) noexcept{
+
+	MyApplication& operator = (const MyApplication&) {
+		cout << MY_FUNCTION << "\n";
+		return *this;
+	}
+	MyApplication& operator = (MyApplication&&) noexcept {
+		cout << MY_FUNCTION << "\n";
 		return *this;
 	}
 
