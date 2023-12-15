@@ -43,7 +43,10 @@ public:
     }
 
     /* return-type */ 
-    int operator[](size_t i) { return data_[i]; }
+    T& operator[](size_t i) { return data_[i]; }
+
+    const T& operator[](size_t i) const { return data_[i]; }
+
     size_t size() const { return size_; }
 
 private:
