@@ -91,15 +91,23 @@ public:
 		if (size_ > 0) size_--;
 	}
 
-	T& operator[](size_t i) {
+	T& operator[](size_t i) & {
 		if (i >= 0 && i < size_) return data_[i];
 	}
-	template <typename U = T, typename enable_if<is_rvalue_reference<U&&>::value, int>::type = 0>
-	T&& operator[](size_t i) {
+
+	const T& operator[](size_t i) const & {
+		if (i >= 0 && i < size_) return data_[i];
+	}
+
+	T&& operator[](size_t i) && {
 		if (i >= 0 && i < size_) return move(data_[i]);
 	}
 
-	size_t size() const {
+	const T&& operator[](size_t i) const && {
+		if (i >= 0 && i < size_) return move(data_[i]);
+	}
+
+	const size_t size() const {
 		return size_;
 	}
 	void emplace_back(T&& val) {
@@ -133,7 +141,7 @@ public:
 		if(data_!=nullptr)
 			return data_;
 	}
-	T* begin() const {
+	const T* begin() const {
 		if (data_ != nullptr)
 			return data_;
 	}
@@ -141,7 +149,7 @@ public:
 		return data_ + size_;
 	}
 
-	T* end() const {
+	const T* end() const {
 		return data_ + size_;
 	}
 private:
@@ -156,6 +164,6 @@ int main() {
 		for (const auto& x : v) {
 			cout << x << ' ';
 		}
-	} // v ¼Ò¸ê
+	} 
 	return 0;
 }
