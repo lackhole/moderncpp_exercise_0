@@ -24,8 +24,9 @@ int main() {
 	else {
 		
 		int idx = -1;
-		vector<int>::iterator it=
-		find_if(v.begin(), v.end(),check(a) );
+		vector<int>::iterator it;
+		// Commented by yonggyulee: cannot find check
+		// find_if(v.begin(), v.end(),check(a) );
 		
 		if (it == v.end()) {
 			cout << idx;

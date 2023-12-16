@@ -1,4 +1,6 @@
-#include <bits/stdc++.h>
+#include <iostream>
+
+
 #ifdef _MSC_VER
 #define MY_FUNCTION __FUNCSIG__
 #else
