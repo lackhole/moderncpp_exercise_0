@@ -1,4 +1,4 @@
-#include <bits/stdc++.h>
+#include <iostream>
 
 using namespace std;
 /*
@@ -138,6 +138,6 @@ int main() {
 	cout << "\nMove Assignment Operator: ";
 	for (size_t i = 0; i < v5.size(); ++i)
 		cout << v5[i] << " ";
-	} // v ¼Ò¸ê
+	} // v ï¿½Ò¸ï¿½
 	return 0;
 }
