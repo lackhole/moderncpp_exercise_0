@@ -25,6 +25,7 @@ function(CreateTargets dir ext)
     endforeach()
 endfunction()
 
+include(CheckCXXCompilerFlag)
 macro(SetCXXFlags value)
     check_cxx_compiler_flag(${value} _out)
     if ("${_out}")
