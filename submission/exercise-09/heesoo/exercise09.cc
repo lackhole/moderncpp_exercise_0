@@ -18,20 +18,20 @@ public:
 
 	void push_back(const T& data) {
 		if (size_ >= capacity_) {
-			// ¿ë·® ´Ã¸®±â
+			// ï¿½ë·® ï¿½Ã¸ï¿½ï¿½ï¿½
 			capacity_ = capacity_ * 2;
 
-			// ¸Þ¸ð¸® »õ·Î ÇÒ´ç
+			// ï¿½Þ¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ò´ï¿½
 			T* new_data = new T[capacity_];
 			
-			// ±âÁ¸ ¸Þ¸ð¸® º¹»ç
+			// ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¸ï¿½ ï¿½ï¿½ï¿½ï¿½
 			std::copy(data_, data_ + size_, new_data);
 
-			// ±âÁ¸ ¸Þ¸ð¸® ÇØÁ¦
+			// ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¸ï¿½ ï¿½ï¿½ï¿½ï¿½
 			delete[] data_;
 
-			// ±âÁ¸ Æ÷ÀÎÅÍ ´ëÃ¼
-			data_ = new_data
+			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼
+			data_ = new_data;
 		}
 
 		data_[size_] = data;
@@ -45,11 +45,11 @@ public:
 		}
 	}
 
-	T& operator[](std::size_t) {
+	T& operator[](std::size_t i) {
 		return data_[i];
 	}
 
-	const T& operator[](std::size_t) const {
+	const T& operator[](std::size_t i) const {
 		return data_[i];
 	}
 

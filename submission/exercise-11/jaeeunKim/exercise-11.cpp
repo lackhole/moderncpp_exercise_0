@@ -1,4 +1,4 @@
-#include <bits/stdc++.h>
+#include <iostream>
 
 using namespace std;
 /*
@@ -183,6 +183,6 @@ int main() {
 	v.emplace_back(string("hello last time"));
 	for (size_t i = 0; i < v.size(); ++i)
 		cout << v[i] << ' ';
-	} // v ¼Ò¸ê
+	} // v ï¿½Ò¸ï¿½
 	return 0;
 }
