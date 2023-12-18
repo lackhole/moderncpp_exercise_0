@@ -10,7 +10,7 @@ using namespace std;
 
 class MyApplication {
 public :
-	MyApplication() { // ±âº» »ý¼ºÀÚ
+	MyApplication() { // ï¿½âº» ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		cout << "print : " << MY_FUNCTION << endl;
 	}
 	MyApplication(const MyApplication&) {
@@ -19,7 +19,7 @@ public :
 	MyApplication(MyApplication&&) {
 		cout << "print : " << MY_FUNCTION << endl;
 	}
-	MyApplication& operator=(const MyApplication&) { // º¹»ç ´ëÀÔ ¿¬»êÀÚ
+	MyApplication& operator=(const MyApplication&) { // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		cout << "print : " << MY_FUNCTION << endl;
 		return *this;
 	}
@@ -28,7 +28,7 @@ public :
 		return *this;
 	}
 	~MyApplication() {
-		cout << "delete : " << __FUNCSIG__ << endl;
+		cout << "delete : " << MY_FUNCTION << endl;
 	}
 };
 

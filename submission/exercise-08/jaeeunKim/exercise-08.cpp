@@ -1,8 +1,10 @@
-#include <bits/stdc++.h>
+#include <iostream>
+
+
 #ifdef _MSC_VER
 #define MY_FUNCTION __FUNCSIG__
 #else
-#define MY_FUNCTION __FUNCSIG__
+#define MY_FUNCTION __PRETTY_FUNCTION__
 #endif
 using namespace std;
 /*
