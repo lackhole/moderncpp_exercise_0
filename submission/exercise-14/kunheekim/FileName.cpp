@@ -1,5 +1,5 @@
 #include <iostream>
-#inclide <memory>
+#include <memory>
 class MyBaseClass {
 public:
 	virtual void Hello() {
