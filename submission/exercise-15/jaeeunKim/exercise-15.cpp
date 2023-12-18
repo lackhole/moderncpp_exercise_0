@@ -18,8 +18,10 @@ int main() {
 	});
 
 	// do something
-	th1.join();
-	th2.join();
+	if(th1.joinable())
+		th1.join();
+	if(th2.joinable())
+		th2.join();
 	cout << x << '\n';
 	return 0;
 }
