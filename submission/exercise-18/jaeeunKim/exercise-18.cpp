@@ -39,8 +39,8 @@ int main() {
 		cv.wait(lck, [&]() {
 			return x == 200'000'000;
 		});
-		lck.unlock();
 		cout << x << '\n';
+		lck.unlock();
 	});
 
 
