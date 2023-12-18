@@ -1,6 +1,6 @@
 #include <iostream>
 #include <cstdint>
-#include <memory>
+//#include <memory>
 
 void TestUniquePtr();
 void TestSharedPtr();
