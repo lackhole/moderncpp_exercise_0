@@ -31,9 +31,10 @@ int main() {
 		}
 	});
 
+	
 
-	if (th.joinable()) {
-		th.join();
+	if (th1.joinable()) {
+		th1.join();
 	}
 
 	if (th2.joinable()) {
