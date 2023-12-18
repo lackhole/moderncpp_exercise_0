@@ -1,0 +1,58 @@
+#include <iostream>
+#include <thread>
+#include <atomic>
+#include <chrono>
+#include <mutex>
+
+using namespace std;
+
+
+
+int main()
+{
+	std::condition_variable cv; 
+	std::mutex m;
+	int wakeup = 0; 
+	int x2 = 0;
+	
+	std::thread th3 = std::thread([&]() {
+		for (int i = 0; i < 100000000; ++i){
+			std::lock_guard<std::mutex> lck(m); 
+			x2 += 1;
+		}
+		wakeup += 1;
+		cv.notify_one();
+	});
+
+	std::thread th4 = std::thread([&]() {
+		for (int i = 0; i < 100000000; ++i){
+			std::lock_guard<std::mutex> lck(m);
+			x2 += 1;
+		}
+		wakeup += 1;
+		cv.notify_one();
+	});
+
+	
+
+	std::thread th5 = std::thread([&]() {
+		std::unique_lock<std::mutex> lck(m);
+
+		cv.wait(lck, [&]() {
+			return (wakeup == 2); 
+		});
+		
+		std::cout << x2 << "\n";
+	});
+
+	if (th3.joinable())
+		th3.join();
+
+	if (th4.joinable())
+		th4.join();
+
+	if (th5.joinable())
+		th5.join();
+
+	return 0;
+}
