@@ -9,7 +9,7 @@ int main() {
 	namespace chrono = std::chrono;
 
 	// Use std::atomic
-	std::atomic<int> x1 = 0;
+	std::atomic<int> x1 = { 0 };
 
 	// 시간 측정
 	auto t1 = chrono::steady_clock::now();
@@ -17,15 +17,15 @@ int main() {
 		for (int i = 0; i < 100000000; i++) {
 			x1.fetch_add(1);  //x1 += 1;
 		}
-	});
+		});
 
 	std::thread th2 = thread([&]() {
 		for (int i = 0; i < 100000000; i++) {
 			x1.fetch_add(1);  //x1 += 1;
 		}
-	});
+		});
 	auto t2 = chrono::steady_clock::now();
-	
+
 	// do something
 	if (th1.joinable()) {
 		th1.join();
@@ -50,13 +50,13 @@ int main() {
 			std::lock_guard<std::mutex> lck(m);
 			x2 += 1;
 		}
-	});
+		});
 	std::thread th4 = thread([&]() {
 		for (int i = 0; i < 100000000; i++) {
 			std::lock_guard<std::mutex> lck(m);
 			x2 += 1;
 		}
-	});
+		});
 	auto t4 = chrono::steady_clock::now();
 
 	// do something
