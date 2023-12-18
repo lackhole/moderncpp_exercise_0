@@ -32,7 +32,7 @@ int main() {
     duration<double> elapsed1 = end1 - start1;
 
     cout << "x1: " << x1 << '\n';
-    cout << "Atomic 걸린 시간: " << elapsed1.count() << "초\n";
+    cout << "걸린 시간: " << elapsed1.count() << "초\n";
 
     //mutex 사용
     auto start2 = steady_clock::now();
@@ -56,7 +56,7 @@ int main() {
     duration<double> elapsed2 = end2 - start2;
 
     cout << "x2: " << x2 << '\n';
-    cout << "Mutex 걸린 시간: " << elapsed2.count() << "초\n";
+    cout << "걸린 시간: " << elapsed2.count() << "초\n";
 
     return 0;
 }
