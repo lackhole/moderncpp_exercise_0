@@ -1,4 +1,5 @@
 #include <iostream>
+#include <memory>
 
 #ifdef _MSC_VER
 #define MY_FUNCTION __FUNCSIG__ 
