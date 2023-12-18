@@ -28,12 +28,12 @@ public:
 
 		//cout << "생성자 " << endl;
 	}
-
-	~MyVector() { // 소멸자
-		delete[] data_;
-		++del_constructor_count;
-		//cout << "소멸자" << endl;
-	}
+//
+//	~MyVector() { // 소멸자
+//		delete[] data_;
+//		++del_constructor_count;
+//		//cout << "소멸자" << endl;
+//	}
 
 	MyVector(MyVector&& v) noexcept { // 이동 생성자
 		delete[] data_;
