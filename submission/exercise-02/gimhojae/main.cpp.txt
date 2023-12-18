@@ -1,0 +1,35 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int main(void) {
+  vector<int> vec;
+  int a;
+
+  for (int i = 0; i < 10; i++) {
+    int n;
+    cin >> n;
+    vec.push_back(n);
+  }
+  cin >> a;
+  auto itr = find(vec.begin(), vec.end(), a);
+  if (itr != vec.end()){
+    cout << distance(vec.begin(), itr) << endl;
+  }
+  else {
+    sort(vec.begin(), vec.end());
+    auto itr_2 = find_if(vec.begin(), vec.end(), [a](int b) {
+      return a < b;
+    });
+    if (itr_2 != vec.end()) {
+      cout << *itr_2 << endl;
+    }
+    else {
+      cout << -1 << endl;
+    }
+  }
+
+
+ }

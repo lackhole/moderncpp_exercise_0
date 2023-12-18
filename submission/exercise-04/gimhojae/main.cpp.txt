@@ -1,0 +1,27 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+
+using namespace std;
+
+int main(void) {
+  int N;
+  vector<int> vec;
+
+  cin >> N;
+  while (N--) {
+    int n;
+    cin >> n;
+    vec.push_back(n);
+  }
+  
+  sort(vec.begin(), vec.end(), [](int a, int b) {
+    int abs_a = a < 0 ? -a : a;
+    int abs_b = b < 0 ? -b : b;
+    return abs_a < abs_b;
+    });
+
+  for (auto i : vec) {
+    cout << i << ' ';
+  }
+}
