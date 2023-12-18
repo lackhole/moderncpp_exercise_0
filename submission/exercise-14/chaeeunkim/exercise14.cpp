@@ -1,4 +1,5 @@
 #include <iostream>
+#include <memory>
 using namespace std;
 
 class MyBaseClass {
@@ -8,7 +9,7 @@ public:
 	}
 };
 
-class MyDerivedClass : public MyBaseClass{
+class MyDerivedClass : public MyBaseClass {
 public:
 	virtual void Hello() {
 		cout << "This is Derived" << endl;
