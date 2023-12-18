@@ -4,10 +4,10 @@
 #include <mutex>
 #include <chrono>
 
-int main() {
+int main() { 
     std::atomic<int> x1(0);
     std::mutex mtx;
-    int x2 = 0;
+    int x2 = 0; 
 
     // atomic »ç¿ë
     auto start1 = std::chrono::steady_clock::now();
