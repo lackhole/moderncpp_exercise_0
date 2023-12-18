@@ -3,30 +3,29 @@
 #include <mutex>
 #include <chrono>
 
-int x = 0;
+
 
 int main() {
-	// 예제 #1: 지나간 시간을 체크합니다.
+	namespace chrono = std::chrono;
 
-	/*
-	auto now1 = std::chrono::steady_clock::now();
-	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-	auto now2 = std::chrono::steady_clock::now();
-	std::chrono::duration dur = now2 - now1;
-	
-	std::cout << duration_cast<std::chrono::milliseconds>(dur) << std::endl;
-	*/
+	//std::atomic<int> x1 = 0;
+	int x1 = 0;
 	std::mutex m;
 
+	auto now1 = std::chrono::steady_clock::now();
+
 	std::thread th1([&]() {
-		std::lock_guard<std::mutex> lck(m);
-		for (int i = 0; i < 100000000; ++i) {
-			x ++;
+		
+		for (int i = 0; i < 100'000'000; ++i) {
+			std::lock_guard<std::mutex> lck(m);
+
+			x1 += 1;
 		}
 		});
 	std::thread th2([&]() {
-		for (int i = 0; i < 100000000; ++i) {
-			x ++;
+		for (int i = 0; i < 100'000'000; ++i) {
+			std::lock_guard<std::mutex> lck(m);
+			x1 += 1;
 		}
 		});
 
@@ -36,8 +35,11 @@ int main() {
 	if (th2.joinable()) {
 		th2.join();
 	}
+	auto now2 = std::chrono::steady_clock::now();
+	auto dt = chrono::duration_cast<chrono::microseconds>(now2 - now1);
 
-	std::cout << x << '\n';
+	std::cout << x1 << '\n';
+	std::cout << dt.count()<<"mili" << '\n';
 
 	return 0;
 }
