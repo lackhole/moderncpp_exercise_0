@@ -62,13 +62,13 @@ int main() {
 
 
 
-	exit(0);
+	
 
 
 }
 
 template <typename T>
-void solution1(T a) { // atomicÀ» ÅëÇÑ ÇØ°á
+void solution1(T a) { // atomicÃ€Â» Ã…Ã«Ã‡Ã‘ Ã‡Ã˜Â°Ã¡
 	std::thread th1([&] {
 		for (int i = 0; i < 100'000'000; ++i) {
 			x1.fetch_add(1, a);
