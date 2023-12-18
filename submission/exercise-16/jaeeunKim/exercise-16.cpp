@@ -13,7 +13,7 @@ using namespace std;
 * 2023-12-18
 */
 int main() {
-	atomic<int> x1 = 0;
+	atomic<int> x1(0);
 	auto start1 = std::chrono::steady_clock::now();
 	thread th1([&]() {
 		for (int i = 0; i < 100'000'000; i++) x1++;
