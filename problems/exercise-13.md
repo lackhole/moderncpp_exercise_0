@@ -5,6 +5,10 @@
 
 ```c++
 
+#include <memory>
+#include <iostream>
+#include <utility>
+
 void TestUniquePtr() {
   // MyApplication 생성
   auto p = std::make_unique<MyApplication>();
