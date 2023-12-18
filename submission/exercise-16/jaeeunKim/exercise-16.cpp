@@ -13,6 +13,7 @@ using namespace std;
 * 2023-12-18
 */
 int main() {
+
 	atomic<int> x1(0);
 	auto start1 = std::chrono::steady_clock::now();
 	thread th1([&]() {
@@ -30,20 +31,22 @@ int main() {
 	cout << "Using atomic... x1 :" << x1 << '\n';
 	auto dur = std::chrono::duration_cast<std::chrono::milliseconds>(end1 - start1);
 	cout << "Elapsed time: " << dur.count() << "ms\n";
-
-	//////////////////////////////////////////////////////////////////////
-
+	
 	int x2 = 0;
 	mutex m;
 
 	auto start2 = std::chrono::steady_clock::now();
 	thread th3([&]() {
-		lock_guard<mutex> lck(m);
-		for (int i = 0; i < 100'000'000; i++) ++x2;
+		for (int i = 0; i < 100'000'000; i++) {
+			lock_guard<mutex> lck(m);
+			++x2;
+		}
 		});
 	thread th4([&]() {
-		lock_guard<mutex> lck(m);
-		for (int i = 0; i < 100'000'000; i++) ++x2;
+		for (int i = 0; i < 100'000'000; i++) {
+			lock_guard<mutex> lck(m);
+			++x2;
+		}
 		});
 
 	// do something
