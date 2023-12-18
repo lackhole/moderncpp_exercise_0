@@ -1,6 +1,6 @@
 #include <iostream>
 #include <cstdint>
-//#include <memory>
+#include <memory>
 
 void TestUniquePtr();
 void TestSharedPtr();
@@ -18,7 +18,7 @@ using namespace std;
 template<typename T>
 class MyVector {
 public:
-	MyVector() // ±âº»»ı¼ºÀÚ
+	MyVector() // ê¸°ë³¸ìƒì„±ì
 		: data_(nullptr),
 		capacity_(3),
 		size_(0)
@@ -26,16 +26,16 @@ public:
 		data_ = new T[capacity_];
 		++default_constructor_count;
 
-		//cout << "»ı¼ºÀÚ " << endl;
+		//cout << "ìƒì„±ì " << endl;
 	}
+//
+//	~MyVector() { // ì†Œë©¸ì
+//		delete[] data_;
+//		++del_constructor_count;
+//		//cout << "ì†Œë©¸ì" << endl;
+//	}
 
-	~MyVector() { // ¼Ò¸êÀÚ
-		delete[] data_;
-		++del_constructor_count;
-		//cout << "¼Ò¸êÀÚ" << endl;
-	}
-
-	MyVector(MyVector&& v) noexcept { // ÀÌµ¿ »ı¼ºÀÚ
+	MyVector(MyVector&& v) noexcept { // ì´ë™ ìƒì„±ì
 		delete[] data_;
 		this->capacity_ = v.capacity_;
 		this->data_ = new T[capacity_];
@@ -43,10 +43,10 @@ public:
 
 		++move_constructor_count;
 
-		//cout << "ÀÌµ¿»ı¼ºÀÚ" << endl;
+		//cout << "ì´ë™ìƒì„±ì" << endl;
 	}
 
-	MyVector& operator=(MyVector&& v) noexcept { // ÀÌµ¿ ¿¬»êÀÚ
+	MyVector& operator=(MyVector&& v) noexcept { // ì´ë™ ì—°ì‚°ì
 		delete[] data_;
 		this->capacity_ = v.capacity_;
 		this->data_ = new T[capacity_];
@@ -54,20 +54,20 @@ public:
 
 		++op_move_constructor_count;
 
-		//cout << "ÀÌµ¿¿¬»êÀÚ" << endl;
+		//cout << "ì´ë™ì—°ì‚°ì" << endl;
 	}
 
-	MyVector(MyVector& v) { // º¹»ç»ı¼ºÀÚ
+	MyVector(MyVector& v) { // ë³µì‚¬ìƒì„±ì
 		delete[] data_;
 		this->capacity_ = v.capacity_;
 		this->data_ = new T[capacity_];
 		this->size_ = v.size_;
 
 		++copy_constructor_count;
-		//cout << "º¹»ç»ı¼ºÀÚ" << endl;
+		//cout << "ë³µì‚¬ìƒì„±ì" << endl;
 	}
 
-	MyVector& operator=(const MyVector & r) { // º¹»ç ´ëÀÔ ¿¬»êÀÚ
+	MyVector& operator=(const MyVector & r) { // ë³µì‚¬ ëŒ€ì… ì—°ì‚°ì
 
 		if (this != &r) {
 			this->capacity_ = r.capacity_;
@@ -77,25 +77,25 @@ public:
 		}
 
 		++op_copy_constructor_count;
-		//cout << "º¹»ç´ëÀÔ¿¬»êÀÚ È£Ãâ" << endl;
+		//cout << "ë³µì‚¬ëŒ€ì…ì—°ì‚°ì í˜¸ì¶œ" << endl;
 		return *this;
 	}
 
 	void push_back(const T& data) {
 		if (size_ >= capacity_) {
-			// ¿ë·® ´Ã¸®±â
+			// ìš©ëŸ‰ ëŠ˜ë¦¬ê¸°
 			capacity_ = capacity_ * 2;
 
-			// ¸Ş¸ğ¸® »õ·Î ÇÒ´ç
+			// ë©”ëª¨ë¦¬ ìƒˆë¡œ í• ë‹¹
 			T* new_data = new T[capacity_];
 
-			// ±âÁ¸ µ¥ÀÌÅÍ º¹»ç
+			// ê¸°ì¡´ ë°ì´í„° ë³µì‚¬
 			std::copy(data_, data_ + size_, new_data);
 
-			// ±âÁ¸ ¸Ş¸ğ¸® ÇØÁ¦
+			// ê¸°ì¡´ ë©”ëª¨ë¦¬ í•´ì œ
 			delete[] data_;
 
-			// ±âÁ¸ Æ÷ÀÎÅÍ ´ëÃ¼
+			// ê¸°ì¡´ í¬ì¸í„° ëŒ€ì²´
 			data_ = new_data;
 		}
 
@@ -121,7 +121,7 @@ void TestUniquePtr() {
 
 void TestSharedPtr() {
 	
-	// MyVector »ı¼º
+	// MyVector ìƒì„±
 	auto p =std::make_shared<MyVector<char>>();
 	
 	auto p2 = p;  
@@ -132,7 +132,7 @@ void TestSharedPtr() {
 	
 	p2.reset();
 
-	std::weak_ptr<MyVector<char>> weak_p = p; // weak_p¿¡ pÀÇ ¼ÒÀ¯±ÇÀÌ ÀÌÀü
+	std::weak_ptr<MyVector<char>> weak_p = p; // weak_pì— pì˜ ì†Œìœ ê¶Œì´ ì´ì „
 
 	auto lock = weak_p.lock();
 	if (lock) {
@@ -145,12 +145,12 @@ void TestSharedPtr() {
 
 void Print() {
 	std::cout << "-------------------------------------" << endl;
-	std::cout << "±âº» »ı¼ºÀÚ È£Ãâ È½¼ö: " << default_constructor_count << endl;
-	std::cout << "º¹»ç »ı¼ºÀÚ È£Ãâ È½¼ö: " << copy_constructor_count << endl;
-	std::cout << "ÀÌµ¿ »ı¼ºÀÚ È£Ãâ È½¼ö: " << move_constructor_count << endl;
-	std::cout << "º¹»ç ´ëÀÔ ¿¬»êÀÚ È£Ãâ È½¼ö: " << op_copy_constructor_count << endl;
-	std::cout << "ÀÌµ¿ ´ëÀÔ ¿¬»êÀÚ È£Ãâ È½¼ö: " << op_move_constructor_count << endl;
-	std::cout << "¼Ò¸êÀÚ È£Ãâ È½¼ö: " << del_constructor_count << endl;
+	std::cout << "ê¸°ë³¸ ìƒì„±ì í˜¸ì¶œ íšŸìˆ˜: " << default_constructor_count << endl;
+	std::cout << "ë³µì‚¬ ìƒì„±ì í˜¸ì¶œ íšŸìˆ˜: " << copy_constructor_count << endl;
+	std::cout << "ì´ë™ ìƒì„±ì í˜¸ì¶œ íšŸìˆ˜: " << move_constructor_count << endl;
+	std::cout << "ë³µì‚¬ ëŒ€ì… ì—°ì‚°ì í˜¸ì¶œ íšŸìˆ˜: " << op_copy_constructor_count << endl;
+	std::cout << "ì´ë™ ëŒ€ì… ì—°ì‚°ì í˜¸ì¶œ íšŸìˆ˜: " << op_move_constructor_count << endl;
+	std::cout << "ì†Œë©¸ì í˜¸ì¶œ íšŸìˆ˜: " << del_constructor_count << endl;
 	std::cout << "-------------------------------------" << endl;
 
 	default_constructor_count = 0;
