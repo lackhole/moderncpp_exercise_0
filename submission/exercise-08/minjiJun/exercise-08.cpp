@@ -1,7 +1,14 @@
 //
 // Created by Minji Jun on 2023/12/15.
 //
-#include <bits/stdc++.h>
+#include <iostream>
+
+#ifdef _MSC_VER
+#define MY_FUNCTION __FUNCSIG__
+#else
+#define MY_FUNCTION __PRETTY_FUNCTION__
+#endif
+
 using namespace std;
 
 class MyApplication {
@@ -9,30 +16,30 @@ class MyApplication {
 public:
     // default constructor
     MyApplication() { 
-        cout << __PRETTY_FUNCTION__ << '\n';
+        cout << MY_FUNCTION << '\n';
     }
     // copy constructor
     MyApplication(const MyApplication &myapp) { 
-        cout << __PRETTY_FUNCTION__ << '\n';
+        cout << MY_FUNCTION << '\n';
     }
     // copy assignment operator
     MyApplication(MyApplication&& myapp) noexcept {
-        cout << __PRETTY_FUNCTION__ << '\n';
+        cout << MY_FUNCTION << '\n';
     }
     // move constructor
     MyApplication& operator=(const MyApplication& myapp) {
-        cout << __PRETTY_FUNCTION__ << '\n';
+        cout << MY_FUNCTION << '\n';
         return *this;
         
     }
     // move assignment operator
     MyApplication& operator=(MyApplication&& myapp) noexcept{
-        cout << __PRETTY_FUNCTION__ << '\n';
+        cout << MY_FUNCTION << '\n';
         return *this;
     }
     
     ~MyApplication() {
-        cout << __PRETTY_FUNCTION__ << '\n';
+        cout << MY_FUNCTION << '\n';
     }
 };
 

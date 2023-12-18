@@ -2,9 +2,9 @@
 
 
 #ifdef _MSC_VER
-#define MY_FUNCTION__ __FUNCSIG__
+#define MY_FUNCTION __FUNCSIG__
 #else
-#define MY_FUNCTION__ __PRETTY_FUNCTION__
+#define MY_FUNCTION __PRETTY_FUNCTION__
 #endif
 
 
@@ -36,10 +36,10 @@ public:
 		return *this;
 	}
 
-	MyApplication() {
+	~MyApplication() {
 		std::cout << MY_FUNCTION << '\n';
 
-		//¼Ò¸êÀÚ
+		//ï¿½Ò¸ï¿½ï¿½ï¿½
 	}
 
 

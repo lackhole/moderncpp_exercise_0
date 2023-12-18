@@ -1,4 +1,4 @@
-#include <bits/stdc++.h>
+#include <iostream>
 
 using namespace std;
 /*
@@ -123,6 +123,6 @@ int main() {
 		}
 
 		
-	} // v ¼Ò¸ê
+	} // v ï¿½Ò¸ï¿½
 	return 0;
 }

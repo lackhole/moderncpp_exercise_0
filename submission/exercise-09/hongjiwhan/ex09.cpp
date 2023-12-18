@@ -12,14 +12,14 @@ private:
     std::size_t capacity;
 
 public:
-    // »ý¼ºÀÚ
+    // ìƒì„±ìž
     MyVector() : data(nullptr), size(0), capacity(3) {
-        data = new T[capacity]; // µ¿Àû¸Þ¸ð¸® ÇÒ´ç
+        data = new T[capacity]; // ë™ì ë©”ëª¨ë¦¬ í• ë‹¹
     }
 
-    // ¼Ò¸êÀÚ 
+    // ì†Œë©¸ìž 
     ~MyVector() {
-        delete[] data; // µ¿Àû¸Þ¸ð¸® ÇØÁ¦
+        delete[] data; // ë™ì ë©”ëª¨ë¦¬ í•´ì œ
     }
 
     T& operator[](std::size_t i) {
@@ -31,19 +31,19 @@ public:
 
     void push_back(const T& value) {
         if (size >= capacity) {
-            // ¸Þ¸ð¸® »õ·Î ÇÒ´ç
+            // ë©”ëª¨ë¦¬ ìƒˆë¡œ í• ë‹¹
             capacity *= 2;
             T* newData = new T[capacity];
-            // ±âÁ¸¿¡ ÀÖ´ø ¸Þ¸ð¸®ÀÇ °ªÀ» »õ·Î ÇÒ´çµÈ °÷¿¡ º¹»ç
+            // ê¸°ì¡´ì— ìžˆë˜ ë©”ëª¨ë¦¬ì˜ ê°’ì„ ìƒˆë¡œ í• ë‹¹ëœ ê³³ì— ë³µì‚¬
             /*for (std::size_t i = 0; i < size; i++) {
                 newData[i] = data[i];
             }*/
-            copy(data, data + size, newData); // º¹»ç ÇÔ¼ö¸¦ »ç¿ë
+            copy(data, data + size, newData); // ë³µì‚¬ í•¨ìˆ˜ë¥¼ ì‚¬ìš©
 
-            // º¹»ç¸¦ ´ÙÇßÀ¸¹Ç·Î ±âÁ¸ ¸Þ¸ð¸®´Â ÇØÁ¦ÇÑ´Ù.
+            // ë³µì‚¬ë¥¼ ë‹¤í–ˆìœ¼ë¯€ë¡œ ê¸°ì¡´ ë©”ëª¨ë¦¬ëŠ” í•´ì œí•œë‹¤.
             delete[] data;
 
-            // ±âÁ¸ Æ÷ÀÎÅÍ ´ëÃ¼
+            // ê¸°ì¡´ í¬ì¸í„° ëŒ€ì²´
             data = newData;
         }
         data[size] = value;

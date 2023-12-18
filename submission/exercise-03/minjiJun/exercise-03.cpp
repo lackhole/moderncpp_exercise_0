@@ -8,7 +8,7 @@ constexpr int GCD(int a, int b) {
 
 template<int a, int b, int r = a % b>
 struct gcd_2 {
-    static constexpr int value = GCD<b, r>::value;
+    static constexpr int value = gcd_2<b, r>::value;
 };
 
 template<int a, int b>
